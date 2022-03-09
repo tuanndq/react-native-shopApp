@@ -11,7 +11,7 @@ const CategoryListItem = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.itemTitle}>CategoryListItem</Text>
+      <Text style={styles.itemTitle}>{ props.category.name }</Text>
       <Image source={SkiiImage} style={styles.image} />
     </View>
   )
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 4,
     backgroundColor: '#fff',
-    marginBottom: 16,
+    margin: 10,
   },
   itemTitle: {
     textTransform: 'uppercase',
