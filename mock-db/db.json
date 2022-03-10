@@ -1,0 +1,38 @@
+{
+  "categories": [
+    { "id": 1, "name": "Dung cu truot tuyet" },
+    { "id": 2, "name": "Quan ao truot tuyet" },
+    { "id": 3, "name": "Mu len" },
+    { "id": 4, "name": "Gang tay" },
+    { "id": 5, "name": "Mu" }
+  ],
+  "products": [
+    { 
+      "id": 1, 
+      "name": "Snowboard",
+      "price": "500K",
+      "images": [
+        { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
+      ],
+      "category": 1
+    },
+    { 
+      "id": 2, 
+      "name": "Snowboard 2",
+      "price": "500K",
+      "images": [
+        { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
+      ],
+      "category": 1
+    },
+    { 
+      "id": 3, 
+      "name": "Snowboard 3",
+      "price": "500K",
+      "images": [
+        { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
+      ],
+      "category": 2
+    }
+  ]
+}

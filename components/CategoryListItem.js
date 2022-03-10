@@ -1,7 +1,9 @@
 import React from 'react';
 import {
+  Alert,
   Image,
   Text,
+  TouchableOpacity,
   StyleSheet,
   View,
 } from 'react-native';
@@ -10,10 +12,12 @@ import SkiiImage from '../assets/ski.png'
 const CategoryListItem = (props) => {
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.itemTitle}>{ props.category.name }</Text>
-      <Image source={SkiiImage} style={styles.image} />
-    </View>
+    <TouchableOpacity activeOpacity={0.5} onPress={props.onPress}>
+      <View style={styles.container}>
+        <Text style={styles.itemTitle}>{ props.category.name }</Text>
+        <Image source={SkiiImage} style={styles.image} />
+      </View>
+    </TouchableOpacity>
   )
 }
 
