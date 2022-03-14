@@ -20,7 +20,7 @@ class Category extends React.Component {
         { 
           "id": 1, 
           "name": "Snowboard",
-          "price": "500K",
+          "price": 50000000,
           "images": [
             { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
           ],
@@ -29,7 +29,7 @@ class Category extends React.Component {
         { 
           "id": 2, 
           "name": "Snowboard 2",
-          "price": "500K",
+          "price": 500000,
           "images": [
             { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
           ],
@@ -38,12 +38,39 @@ class Category extends React.Component {
         { 
           "id": 3, 
           "name": "Snowboard 3",
-          "price": "500K",
+          "price": 500000,
           "images": [
             { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
           ],
           "category": 2
-        }
+        },
+        { 
+          "id": 4, 
+          "name": "Snowboard 3",
+          "price": 500000,
+          "images": [
+            { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
+          ],
+          "category": 2
+        },
+        { 
+          "id": 5, 
+          "name": "Snowboard 3",
+          "price": 500000,
+          "images": [
+            { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
+          ],
+          "category": 2
+        },
+        { 
+          "id": 6, 
+          "name": "Snowboard 3",
+          "price": 500000,
+          "images": [
+            { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
+          ],
+          "category": 2
+        },
       ]
     }
   }

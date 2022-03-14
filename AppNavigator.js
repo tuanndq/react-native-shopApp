@@ -5,9 +5,11 @@ import Categories from './screens/Categories';
 import Category from './screens/Category';
 import Cart from './screens/Cart';
 import Orders from './screens/Orders';
+import NewOrder from './screens/NewOrder';
+import OrderInfo from './screens/OrderInfo';
 import Settings from './screens/Settings';
 
-export function Tab1() {
+export function HomeTab() {
   const Stack = createStackNavigator();
   return(
     <Stack.Navigator>
@@ -17,29 +19,31 @@ export function Tab1() {
   );
 }
 
-export function Tab2() {
+export function CartTab() {
   const Stack = createStackNavigator();
   return(
     <Stack.Navigator initialRouteName="Cart">
       <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="New Order" component={NewOrder} />
     </Stack.Navigator>
   );
 }
 
-export function Tab3() {
+export function OrderTab() {
   const Stack = createStackNavigator();
   return(
     <Stack.Navigator>
-      <Stack.Screen name="s3" component={Orders} />
+      <Stack.Screen name="Orders" component={Orders} />
+      <Stack.Screen name="OrderInfo" component={OrderInfo} />
     </Stack.Navigator>
   );
 }
 
-export function Tab4() {
+export function SettingsTab() {
   const Stack = createStackNavigator();
   return(
     <Stack.Navigator>
-      <Stack.Screen name="s4" component={Settings} />
+      <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 }

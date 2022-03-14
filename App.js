@@ -69,11 +69,9 @@
 
 import React, { useState } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { View, StyleSheet, Button } from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Tab1, Tab2, Tab3, Tab4 } from './AppNavigator'
+import { HomeTab, CartTab, OrderTab, SettingsTab } from './AppNavigator'
 
 import Context from './context-api';
 
@@ -81,7 +79,15 @@ const Tab = createBottomTabNavigator();
 
 const TabNavigator = () => {
   const [cartList, setCartList] = useState([]);
+  const [orderList, setOrderList] = useState([]);
+  const [state, setState] = useState({
+    numProductInCart: 0,
+    totalPrice: 0,
+  })
 
+  //  APP FUNCTION
+
+  //  Add product to cart
   const addToCart = (product) => {
     let temp = cartList;
     let check = false;
@@ -108,13 +114,19 @@ const TabNavigator = () => {
       })
     }
     setCartList(temp);
+    setState({
+      ...state,
+      numProductInCart: state.numProductInCart + 1,
+      totalPrice: state.totalPrice + product.price
+    })
   }
-
-  const changeQuantity = (id, type) => {
+  
+  //  Change number product in cart
+  const changeQuantity = (product, type) => {
     let temp = cartList;
     temp = temp.map(item => {
       let numProduct = item.quantity;
-      if (item.id == id) {
+      if (item.id == product.id) {
         if (type == "plus") {
           numProduct++;
         } else {
@@ -126,13 +138,44 @@ const TabNavigator = () => {
         quantity: numProduct
       }
     })
-    console.log(temp);
     temp = temp.filter(item => item.quantity > 0);
     setCartList(temp);
+
+    let numChange = type == "plus" ? 1 : -1;
+    let priceChange = type == "plus" ? product.price : -product.price;
+    setState({
+      ...state,
+      numProductInCart: state.numProductInCart + numChange,
+      totalPrice: state.totalPrice + priceChange
+    })
+  }
+
+  //  Create new order
+  const createOrder = ({ name, phone, address }) => {
+    let newOrder = {
+      id: (new Date).getTime(),
+      name,
+      phone,
+      address,
+      price: state.totalPrice,
+      products: cartList,
+      createdAt: (new Date).toLocaleString()
+    }
+    let temp = orderList;
+    temp.push(newOrder);
+    setOrderList(temp);
+    setCartList([]);
+    setState({
+      numProductInCart: 0,
+      totalPrice: 0,
+    })
   }
 
   return(
-    <Context.Provider value={{ cartList, addToCart, changeQuantity }}>
+    <Context.Provider value={{ 
+      cartList, state, orderList,
+      addToCart, changeQuantity, createOrder 
+    }}>
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
@@ -159,20 +202,26 @@ const TabNavigator = () => {
         >
           <Tab.Screen
             name="Home"
-            component={Tab1}
+            component={HomeTab}
           />
           <Tab.Screen
             name="Cart"
-            component={Tab2}
-            options={{unmountOnBlur: true}}
+            component={CartTab}
+            options={{ 
+              unmountOnBlur: true,
+              tabBarBadge: state.numProductInCart > 0 ? state.numProductInCart : null
+            }}
           />
           <Tab.Screen
             name="Orders"
-            component={Tab3}
+            component={OrderTab}
+            options={{
+              unmountOnBlur: true
+            }}
           />
           <Tab.Screen
             name="Settings"
-            component={Tab4}
+            component={SettingsTab}
           />
         </Tab.Navigator>
       </NavigationContainer>

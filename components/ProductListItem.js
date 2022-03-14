@@ -1,5 +1,6 @@
 import React from 'react';
 import { Image, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import NumberFormat from '../mixins/NumberFormat';
 
 export default function ProductListItem(props) {
   const { product, onAddToCartClick } = props;
@@ -11,7 +12,7 @@ export default function ProductListItem(props) {
         <View style={styles.info}>
           <Text style={styles.name}>{ product.name }</Text>
           <View style={styles.priceRow}>
-            <Text style={styles.price}>{ product.price }</Text>  
+            <Text style={styles.price}>{ NumberFormat(product.price) }</Text>  
             <TouchableOpacity onPress={() => onAddToCartClick(product)}>
               <Text style={styles.cartText}>MUA +</Text>
             </TouchableOpacity>
