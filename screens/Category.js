@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import axios from 'axios';
 import ProductListItem from '../components/ProductListItem';
+import Context from '../context-api';
 
 class Category extends React.Component {
+  static contextType = Context;
+
   static navigationOptions = ({ navigation }) => {
     return {
       title: `${navigation.getParam('title')}`
@@ -13,26 +16,44 @@ class Category extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: []
+      products: [
+        { 
+          "id": 1, 
+          "name": "Snowboard",
+          "price": "500K",
+          "images": [
+            { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
+          ],
+          "category": 1
+        },
+        { 
+          "id": 2, 
+          "name": "Snowboard 2",
+          "price": "500K",
+          "images": [
+            { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
+          ],
+          "category": 1
+        },
+        { 
+          "id": 3, 
+          "name": "Snowboard 3",
+          "price": "500K",
+          "images": [
+            { "url": "https://www.burton.com/static/product/W22/10691108000142_1.png?impolicy=bglt&imwidth=972" }
+          ],
+          "category": 2
+        }
+      ]
     }
   }
 
   componentDidMount() {
-    const { navigation } = this.props;
-    const category = navigation.getParam('category');
-
-    axios.get(`/products?category=${category}`)
-      .then(res => {
-        this.setState({
-          products: res.data
-        })
-      })
-      .catch(err => {
-        console.error(err);
-      })
+    
   }
 
   render() {
+    const { addToCart } = this.context;
     return (
       <FlatList
         data={this.state.products}
@@ -40,7 +61,7 @@ class Category extends React.Component {
         numColumns={2}
         renderItem={({ item }) => 
           <View style={styles.wrapper}>
-            <ProductListItem product={item} onAddToCartClick={() => {}}/>
+            <ProductListItem product={item} onAddToCartClick={addToCart}/>
           </View>
         }
         keyExtractor={(item) => `${item.id}`}

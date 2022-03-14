@@ -12,7 +12,7 @@ export default function ProductListItem(props) {
           <Text style={styles.name}>{ product.name }</Text>
           <View style={styles.priceRow}>
             <Text style={styles.price}>{ product.price }</Text>  
-            <TouchableOpacity onPress={onAddToCartClick}>
+            <TouchableOpacity onPress={() => onAddToCartClick(product)}>
               <Text style={styles.cartText}>MUA +</Text>
             </TouchableOpacity>
           </View>

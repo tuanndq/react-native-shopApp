@@ -11,20 +11,18 @@ class Categories extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      categories: []
+      categories: [
+        { "id": 1, "name": "Dung cu truot tuyet" },
+        { "id": 2, "name": "Quan ao truot tuyet" },
+        { "id": 3, "name": "Mu len" },
+        { "id": 4, "name": "Gang tay" },
+        { "id": 5, "name": "Mu" }
+      ],
     } 
   };
 
   componentDidMount() {
-    axios.get('/categories')
-      .then(res => {
-        this.setState({
-          categories: res.data
-        })
-      })
-      .catch(err => {
-        console.error("Have error: " + err);
-      })
+    
   }
 
   render() {
